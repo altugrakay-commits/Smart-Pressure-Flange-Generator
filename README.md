@@ -1,4 +1,5 @@
 # Smart Pressure Flange Generative Design
+![Smart Pressure Flange Render](render.jpg)
 **Copyright (c) 2026 altugrakay-commits. All rights reserved.**
 
 This repository features a parametric CAD pipeline that bridges analytical optimization with automated 3D modeling.
