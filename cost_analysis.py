@@ -3,25 +3,30 @@
 # -------------------------------------------------------------------
 import os
 
-# PRIVACY: Use relative paths for local file lookup
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# In a real pipeline, this value is parsed from the generator's output
-# Here we use an example volume based on your successful render
+# --- 1. DATA INPUT ---
+# In a fully integrated pipeline, this volume is fetched from the CAD solid.
+# Based on your successful FreeCAD render:
 FLANGE_VOLUME_MM3 = 145230.45 
 
-# Material Database: Density (g/cm3) and Market Cost (USD/kg)
+# --- 2. MATERIAL DATABASE ---
+# Density is in g/cm3 | Cost is in USD per kg
 MATERIALS = {
     "316 Stainless Steel": {"density": 8.0, "cost_per_kg": 4.50},
-    "6061-T6 Aluminum": {"density": 2.7, "cost_per_kg": 2.85}
+    "6061-T6 Aluminum": {"density": 2.7, "cost_per_kg": 2.85},
+    "Carbon Steel": {"density": 7.85, "cost_per_kg": 1.20}
 }
 
 def run_cost_analysis():
-    print("--- Smart Pressure Flange: Cost Estimation ---")
-    print(f"Calculated Volume: {FLANGE_VOLUME_MM3:.2f} mm3\n")
+    """Calculates weight and material cost based on 3D volume."""
+    print("--- Smart Pressure Flange: Cost & Weight Analysis ---")
+    print(f"Total Design Volume: {FLANGE_VOLUME_MM3:.2f} mm3\n")
     
     for mat, props in MATERIALS.items():
-        # Convert mm3 to cm3, then to kg using density
-        mass_kg = (FLANGE_VOLUME_MM3 / 1000 * props["density"]) / 1000
+        # Convert mm3 to cm3 (divide by 1000)
+        volume_cm3 = FLANGE_VOLUME_MM3 / 1000
+        # Calculate mass in kg
+        mass_kg = (volume_cm3 * props["density"]) / 1000
+        # Calculate total cost
         total_cost = mass_kg * props["cost_per_kg"]
         
         print(f"Material: {mat}")
