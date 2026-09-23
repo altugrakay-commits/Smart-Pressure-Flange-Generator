@@ -1,1 +1,9 @@
-libgl1
+libgl1-mesa-glx
+libglib2.0-0
+libosmesa6-dev
+libxcursor-dev
+libxext6
+libsm6
+libxrender1
+xvfb
+procps
