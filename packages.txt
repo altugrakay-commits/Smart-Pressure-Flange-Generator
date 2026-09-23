@@ -1,7 +1,7 @@
-libgl1-mesa-glx
+libgl1
 libglib2.0-0
 libosmesa6-dev
-libxcursor-dev
+libxcursor1
 libxext6
 libsm6
 libxrender1
